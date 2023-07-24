@@ -1,0 +1,66 @@
+﻿@*definindo a classe de modelo de dados utilizada nesta página*@
+@model AgendaWeb.Presentation.Models.EventoCadastroViewModel
+
+<h5>Cadastro de Evento</h5>
+<p>
+    Preencha os campos para criar um evento em sua agenda.
+</p>
+<hr/>
+
+@*declarando o formulário*@
+@using (Html.BeginForm())
+{
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label>Nome do evento:</label>
+            @Html.TextBoxFor(model => model.Nome,
+                new {@class = "form-control"})
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.Nome)
+            </span>
+        </div>
+         <div class="col-md-3">
+            <label>Data do evento:</label>
+            @Html.TextBoxFor(model => model.Data,
+                new {@Type = "date", @class = "form-control"})
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model=> model.Data)
+            </span>
+        </div>
+         <div class="col-md-3">
+            <label>Hora do evento:</label>
+            @Html.TextBoxFor(model => model.Hora,
+                new {@Type = "Time", @class = "form-control"})
+            <sapn class="text-danger">
+                @Html.ValidationMessageFor(model => Model.Hora)
+            </sapn>
+        </div>
+    </div>
+
+     <div class="row mb-3">
+        <div class="col-md-6">
+            <label>Descrição do evento:</label>
+            @Html.TextAreaFor(model => model.Descricao,
+                new {@class = "form-control"})
+                <sapn class="text-danger">
+                    @Html.ValidationMessageFor(model => Model.Descricao)
+                </sapn>
+        </div>
+         <div class="col-md-3">
+            <label>prioridade do evento:</label>
+            <br/>
+            @Html.RadioButtonFor(model => model.Prioridade, "1") <label>Baixa</label> <br/>
+            @Html.RadioButtonFor(model => model.Prioridade, "2") <label>Média</label> <br/>
+            @Html.RadioButtonFor(model => model.Prioridade, "3") <label>Alta</label> <br/>
+                <sapn class="text-danger">
+                    @Html.ValidationMessageFor(model => model.Prioridade)
+                </sapn>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <input type="submit" value="Realizar Cadastro" class="btn btn-success"/>
+        </div>
+    </div>
+}

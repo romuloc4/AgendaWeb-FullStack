@@ -1,0 +1,115 @@
+﻿@*classe de modelo utilizada nesta página*@
+@model AgendaWeb.Presentation.Models.EventoConsultaViewModel
+
+<h5>Concsulta de Evento</h5>
+<p>
+    Preencha os campos para consultar um evento em sua agenda.
+</p>
+<hr/>
+
+@using (Html.BeginForm())
+{
+    <div class="row mb-3"> 
+        <div class="col-md-3">
+            <label>Data do início:</label>
+            @Html.TextBoxFor(model => model.DataMin,
+                new {@type = "date", @class = "form-control"})
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.DataMin)
+            </span>
+        </div>
+        <div class="col-md-3">
+            <label>Data de término:</label>
+            @Html.TextBoxFor(model => model.DataMax,
+                new {@type = "date", @class = "form-control"})
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.DataMax)
+            </span>
+        </div>
+        <div class="col-md-6">
+            <br/>
+            @Html.RadioButtonFor(model => model.Ativo, "1") <sapn>Eventos Ativos</sapn>
+            &nbsp;
+            @Html.RadioButtonFor(model => model.Ativo, "0") <sapn>Eventos Inativos</sapn> 
+            <br/>
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.Ativo)
+            </span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <input type="submit" value="Pesquisar eventos" class="btn btn-success"/>
+        </div>
+    </div>
+} 
+
+<div class="row mb-3">
+    @if (Model != null && Model.Eventos != null && Model.Eventos.Count > 0)
+    {
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nome do evento</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Prioridade</th>
+                    <th>Ativo</th>
+                    <th>Operações</th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach(var item in Model.Eventos)
+                {
+                    <tr>
+                        <td>@item.Nome</td>
+                        <td>@Convert.ToDateTime(item.Data).ToString("ddd, dd/MM/yyyy")</td>
+                        <td>@item.Hora</td>
+                        <td>
+                            @if (item.Prioridade == 1)
+                            {
+                                <span class="badge bg-success">BAIXA</span>
+                            }
+                            else if (item.Prioridade == 2)
+                            {
+                                <span class="badge bg-warning">MÉDIA</span>
+                            }
+                            else if (item.Prioridade == 3)
+                            {
+                                <span class="badge bg-danger">ALTA</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Ativo == 0)
+                            {
+                                <span class="text-danger">Não</span>
+                            }
+                            else if (item.Ativo == 1)
+                            {
+                                <span class="text-success">Sim</span>
+                            }
+                        </td>
+                        <td>
+                            <a href="/Agenda/Edicao?id=@item.Id" class="btn btn-primary btn-sm">
+                                Alterar
+                            </a>
+                            <a href="/Agenda/Exclusao?id=@item.Id" 
+                                onclick="return confirm('Deseja Realmente excluir o evento: @item.Nome?');"
+                                class="btn btn-danger btn-sm">
+                                Excluir
+                            </a>
+                        </td>
+                    </tr>   
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        Quantidade de eventos: @Model.Eventos.Count
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+</div>

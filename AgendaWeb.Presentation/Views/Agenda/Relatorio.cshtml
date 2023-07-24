@@ -1,0 +1,53 @@
+﻿@model AgendaWeb.Presentation.Models.EventoRelatorioViewModel
+<h5>relatorio de Evento</h5>
+<p>
+    Preencha os campos para gerar um relatorio com seus eventos .
+</p>
+<hr/>
+
+@using(Html.BeginForm())
+{
+
+    <div class="row mb-3"> 
+        <div class="col-md-3">
+            <label>Data do início:</label>
+            @Html.TextBoxFor(model => model.DataMin, 
+                new { @class = "form-control", @type = "date"})
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.DataMin)
+            </span>
+        </div>
+        <div class="col-md-3">
+            <label>Data de término:</label>
+            @Html.TextBoxFor(model => model.DataMax,
+                new {@class = "form-control", @type = "date"})
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.DataMax)
+            </span>
+        </div>
+        <div class="col-md-2">
+            <label>Tipo do Evento</label> <br/>
+            @Html.RadioButtonFor(model => model.Ativo, 1) Ativos <br/>
+            @Html.RadioButtonFor(model => model.Ativo, 0) Inativos <br/>
+            <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.Ativo)
+            </span>
+        </div>
+
+            <div class="col-md-3">
+                <label>Tipo do Relatório</label> <br/>
+            @Html.RadioButtonFor(model => model.Formato, 1) Formato PDF <br/>
+            @Html.RadioButtonFor(model => model.Formato, 2) Formato Excel <br/>
+                <span class="text-danger">
+                @Html.ValidationMessageFor(model => model.Formato)
+                </span>
+            </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <input type="submit" value=" Gerar Relatório" class="btn btn-success"/>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaWeb.Presentation", "AgendaWeb.Presentation\AgendaWeb.Presentation.csproj", "{0E73CBE0-2AA6-463B-94ED-E0B3B84AEF00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Presetation", "1-Presetation", "{5985669C-86D9-4CBC-B539-7DBF669D869B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Repository", "2-Repository", "{9B8702E0-0015-42B4-BDBB-DF78C7E5C96E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaWeb.Infra.Data", "AgendaWeb.Infra.Data\AgendaWeb.Infra.Data.csproj", "{82A83774-46C9-4E21-A984-605C48A60893}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Reports", "3 - Reports", "{9F8B1282-9158-45C1-8FF7-4BEAACF6705B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaWeb.Reports", "AgendaWeb.Reports\AgendaWeb.Reports.csproj", "{996CE74B-62C2-40B4-9CE0-89CA23F0EA3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E73CBE0-2AA6-463B-94ED-E0B3B84AEF00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E73CBE0-2AA6-463B-94ED-E0B3B84AEF00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E73CBE0-2AA6-463B-94ED-E0B3B84AEF00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E73CBE0-2AA6-463B-94ED-E0B3B84AEF00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82A83774-46C9-4E21-A984-605C48A60893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A83774-46C9-4E21-A984-605C48A60893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A83774-46C9-4E21-A984-605C48A60893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A83774-46C9-4E21-A984-605C48A60893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{996CE74B-62C2-40B4-9CE0-89CA23F0EA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{996CE74B-62C2-40B4-9CE0-89CA23F0EA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{996CE74B-62C2-40B4-9CE0-89CA23F0EA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{996CE74B-62C2-40B4-9CE0-89CA23F0EA3A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0E73CBE0-2AA6-463B-94ED-E0B3B84AEF00} = {5985669C-86D9-4CBC-B539-7DBF669D869B}
+		{82A83774-46C9-4E21-A984-605C48A60893} = {9B8702E0-0015-42B4-BDBB-DF78C7E5C96E}
+		{996CE74B-62C2-40B4-9CE0-89CA23F0EA3A} = {9F8B1282-9158-45C1-8FF7-4BEAACF6705B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3775F42-E152-446C-BE70-198D9DF3B59E}
+	EndGlobalSection
+EndGlobal

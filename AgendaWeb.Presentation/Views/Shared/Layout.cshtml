@@ -1,0 +1,118 @@
+﻿@using Microsoft.AspNetCore.Http
+@using AgendaWeb.Presentation.Models
+@using Newtonsoft.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HTTpContextAcessor
+
+@{
+    //ler o conteudo json gravado na sessão
+    var json = HTTpContextAcessor.HttpContext.Session.GetString("usuario");
+
+    //deserializar o conteudo do JSON
+    var usuario = JsonConvert.DeserializeObject<UserIdentityModel>(json);
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rômulo - Agenda</title>
+
+    <!--folhas de estilo CSS-->
+    <link rel="stylesheet" href="~/css/bootstrap.css"/>
+
+</head>
+<body>
+
+    <!--Menu-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Agenda web</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/Home/Index">
+              Página inicial
+              </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Gerenciar Agenda
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropDown">
+            <li><a class="dropdown-item" href="/Agenda/Cadastro">Cadastrar Eventos</a></li>
+            <li><a class="dropdown-item" href="/Agenda/Consulta">Consultar Eventos</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/Agenda/Relatorio">Relátorio e Eventos</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/Account/UserData">
+              Minha Conta
+              </a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link btn btn-outline-secondary" aria-current="page" href="/Account/Logout"
+                onclick="return confirm('deseja realmente sair do sistema?'); ">
+              Sair
+              </a>
+        </li>
+      </ul>
+
+        <form class="d-flex" role="search">
+            <span class="text-white">Usuário:</span>
+            &nbsp;
+            <strong class="text-white">
+                        @usuario.Nome
+            </strong>
+            &nbsp;&nbsp;
+        </form>
+
+    </div>
+  </div>
+</nav>
+
+<!-- exibir mensagem de sucesso, alerta ou erro -->
+    @if(TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Sucesso!</strong> @TempData["MensagemSucesso"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    else if(TempData["MensagemAlerta"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Alerta!</strong> @TempData["MensagemAlerta"]
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+    }
+    else if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Erro!</strong> @TempData["MensagemErro"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="container mt-4">
+        <!-- local onde e inserido  conteudo das páginas -->
+        <div class="card">
+            <div class="card-body">
+                @RenderBody()
+            </div>
+        </div>     
+    </div>
+
+    <!--arquivos de estensaão JS-->
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
